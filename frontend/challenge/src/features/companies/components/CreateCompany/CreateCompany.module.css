@@ -1,0 +1,14 @@
+.createContainer {
+  width: 45%;
+  margin: auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #2699fb;
+  text-align: center;
+}
+
+.containerForm {
+  text-align: start;
+}

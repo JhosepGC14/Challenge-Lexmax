@@ -1,0 +1,49 @@
+.gridContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  color: #2699fb;
+  margin-bottom: 70px;
+}
+
+.allProducts {
+  margin-top: 70px;
+  text-align: center;
+}
+
+.allProducts h3 {
+  margin-bottom: 50px;
+}
+
+.containerImg img {
+  display: block;
+  width: 300px;
+  height: auto;
+}
+
+.containerImg {
+  display: flex;
+  justify-content: center;
+  width: 40%;
+  margin: auto;
+}
+
+.containerText {
+  width: 40%;
+  margin: auto;
+}
+
+.gridProduct {
+  display: grid;
+  grid-template-columns: 200px 200px 200px 200px;
+  grid-template-rows: 300px;
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
+  justify-content: center;
+  padding-bottom: 30px;
+  background: white;
+  padding: 30px;
+  border-radius: 5px;
+}
