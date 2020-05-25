@@ -1,0 +1,22 @@
+.container {
+  height: 100vh;
+  width: 45%;
+  margin: auto;
+  color: #2699fb;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+
+.colContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form_group {
+  text-align: start;
+  width: 100%;
+}

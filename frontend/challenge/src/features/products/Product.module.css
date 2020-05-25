@@ -1,0 +1,18 @@
+.gridProduct {
+  display: grid;
+  grid-template-columns: 200px 200px 200px 200px;
+  grid-template-rows: 300px;
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
+  justify-content: center;
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+
+.container {
+  background: white;
+  text-align: center;
+  border-radius: 5px;
+  margin-top: 30px;
+  padding-top: 30px;
+}
