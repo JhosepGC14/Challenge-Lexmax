@@ -1,4 +1,4 @@
-import Login from "../Login/Login";
+import Login from "../Login";
 import Register from "../Register"
 import ResetPass from "../ResetPass"
 import UpdateProfile from "../UpdateProfile";

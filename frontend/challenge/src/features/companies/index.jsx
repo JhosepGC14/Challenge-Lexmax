@@ -4,6 +4,8 @@ import CardProduct from "../products/components/CardProduct";
 import style from "./Companies.module.css";
 
 const Companies = () => {
+
+
   return (
     <div className={style.container}>
       <CardCompanies />

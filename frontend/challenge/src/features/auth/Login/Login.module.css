@@ -14,7 +14,13 @@
 }
 
 .img {
-  width: 600px;
+  width: 100%;
   border-radius: 5px;
   box-shadow: -9px 9px 32px darkgrey;
+}
+
+.formContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
 }
