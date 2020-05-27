@@ -29,11 +29,12 @@
   transform: scale(1.1);
 }
 
-.cardcompany a {
+.absolute {
   position: absolute;
   top: 20px;
   right: 30px;
   color: #2699fb;
+  font-size: 13px;
 }
 
 .leave {

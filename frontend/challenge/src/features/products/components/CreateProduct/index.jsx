@@ -6,17 +6,19 @@ const CreateProduct = () => {
     <div className={`col ${style.createContainer}`}>
       <label>My Company</label>
       <h1>Create Product</h1>
-      <div className={`form-group ${style.containerForm}`}>
+      <form className={`form-group ${style.containerForm}`}>
         <label htmlFor="">NAME PRODUCT:</label>
         <input
           className="form-control"
-          type="email"
+          type="text"
+          name="nameproduct"
           placeholder="Ejem: Product N°12."
         />
         <label htmlFor="">SKU:</label>
         <input
           className="form-control"
           type="text"
+          name="sku"
           placeholder="Ejem: DP18-Bk-T."
         />
         <div className="row">
@@ -25,6 +27,7 @@ const CreateProduct = () => {
             <input
               className="form-control"
               type="number"
+              name="price"
               placeholder="Ejem: $200."
             />
           </div>
@@ -33,14 +36,15 @@ const CreateProduct = () => {
             <input
               className="form-control"
               type="number"
+              name="discount"
               placeholder="Ejem: 10%."
             />
           </div>
         </div>
-      </div>
-      <button type="submit" className="btn btn-primary">
-        CREATE NOW
-      </button>
+        <button type="submit" className="btn btn-primary mt-3 w-100">
+          CREATE NOW
+        </button>
+      </form>
     </div>
   );
 };

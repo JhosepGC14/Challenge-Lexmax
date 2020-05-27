@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import style from "./Header.module.css";
 import { Link } from "react-router-dom";
+import CompanyContext from "../../context/company/CompanyContext";
 
 const Header = () => {
+  //obtener el state del usuario
+  const authContext = useContext(CompanyContext);
+  const { viewUsername, mostrarUsername } = authContext;
+
   return (
     <header className={style.header}>
       <Link to="/home">LexMax - Challenge</Link>
@@ -20,7 +25,20 @@ const Header = () => {
           <li>
             <Link to="/register">Register</Link>
           </li>
-          <li>Hola <span>Jhosep</span></li>
+          {viewUsername ? (
+            <li>
+              Hola <span>Jhosep</span>
+            </li>
+          ) : null}
+          <li>
+            <button
+              onClick={() => mostrarUsername()}
+              type="button"
+              className="btn btn-info"
+            >
+              View Username
+            </button>
+          </li>
         </ul>
       </div>
     </header>
