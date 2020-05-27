@@ -1,18 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import style from "./CardCompanies.module.css";
 import { Link } from "react-router-dom";
+import CompanyContext from "../../../../context/company/CompanyContext";
 
-const CardCompanies = () => {
+const CardCompanies = ({ companias }) => {
+  //extrae compañias desde el state inicial
+  const currentCompany = useContext(CompanyContext);
+  const { selectCurrent } = currentCompany;
+
   return (
     <div className={style.grid}>
       <div className={style.cardcompany}>
-        <h2>Chemifabri SAC</h2>
+        <h2>
+          <a onClick={() => selectCurrent(companias.id)} href="#!">
+            {companias.name}
+          </a>
+        </h2>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
           ipsum et vero harum expedita animi praesentium voluptatem accusamus,
           cumque cupiditate.
         </p>
-        <Link to="/updatecompany">Edit Company+</Link>
+        <Link className={style.absolute} to="/updatecompany">
+          Edit Company+
+        </Link>
       </div>
       <div className={style.leave}>
         <a href="#!" data-toggle="modal" data-target="#exampleModal">

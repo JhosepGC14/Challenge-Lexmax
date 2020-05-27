@@ -1,59 +1,22 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import style from "../ChooseCompany/ChooseCompany.module.css";
 import CardChoose from "../CardChoose";
 import { Link } from "react-router-dom";
+import CompanyContext from "../../../../context/company/CompanyContext";
 
 const ChooseCompany = () => {
-  const companies = [
-    {
-      id: 1,
-      name: "GMD Peru",
-      ruc: "10987654320",
-      website: "https://evilcorp.com",
-    },
-    {
-      id: 2,
-      name: "Coursera Peru",
-      ruc: "10987654320",
-      website: "https://evilcorp.com",
-    },
-    {
-      id: 3,
-      name: "Udemy Peru",
-      ruc: "10987654320",
-      website: "https://evilcorp.com",
-    },
-    {
-      id: 4,
-      name: "Platzi Peru",
-      ruc: "10987654320",
-      website: "https://evilcorp.com",
-    },
-    {
-      id: 5,
-      name: "EDteam Peru",
-      ruc: "10987654320",
-      website: "https://evilcorp.com",
-    },
-    {
-      id: 6,
-      name: "Intranet Peru",
-      ruc: "10987654320",
-      website: "https://evilcorp.com",
-    },
-    {
-      id: 7,
-      name: "Crehana Peru",
-      ruc: "10987654320",
-      website: "https://evilcorp.com",
-    },
-    {
-      id: 8,
-      name: "JAG Peru",
-      ruc: "10987654320",
-      website: "https://evilcorp.com",
-    },
-  ];
+  //extrae compañias desde el state inicial
+  const chooseCompany = useContext(CompanyContext);
+  const { companies, getCompanies } = chooseCompany;
+
+  //obtener compañias cuando carga el componente
+  useEffect(() => {
+    getCompanies();
+  }, []);
+  //validar si hay o no compañias a mostrar
+  if (companies.length === 0) {
+    return <h1 className="text-center">There's no companies to show you...</h1>;
+  }
 
   return (
     <div className={style.gridChoose}>
@@ -66,8 +29,8 @@ const ChooseCompany = () => {
           <button className="btn btn-primary">CREATE NEW COMPANY</button>
         </Link>
       </div>
-      {companies.map((company) => (
-        <CardChoose company={company} />
+      {companies.map((companies) => (
+        <CardChoose key={companies.id} company={companies} />
       ))}
     </div>
   );
