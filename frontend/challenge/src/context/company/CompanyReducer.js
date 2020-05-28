@@ -3,7 +3,8 @@ import {
   GET_COMPANIES,
   ADD_COMPANY,
   VALIDATE_FORM,
-  GET_CURRENT_PROJECT
+  GET_CURRENT_PROJECT,
+  LEAVE_COMPANY
 } from "../../types";
 
 export default (state, action) => {
@@ -33,6 +34,12 @@ export default (state, action) => {
       return {
         ...state,
         company: state.companies.filter(company => company.id === action.payload)
+      }
+    case LEAVE_COMPANY:
+      return {
+        ...state,
+        companies: state.companies.filter(company => company.id !== action.payload),
+        company: null
       }
     default:
       return state;

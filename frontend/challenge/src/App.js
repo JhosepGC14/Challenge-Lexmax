@@ -6,17 +6,20 @@ import "./App.css"
 import MainRoutes from './routes';
 import Layout from "../src/components/Layout";
 import CompanyState from "./context/company/CompanyState"
+import ProductState from "./context/products/ProductState"
 
 function App() {
   return (
     <CompanyState>
-      <Router>
-        <Header />
-        <Layout>
-          <MainRoutes />
-        </Layout>
-        <Footer />
-      </Router>
+      <ProductState>
+        <Router>
+          <Header />
+          <Layout>
+            <MainRoutes />
+          </Layout>
+          <Footer />
+        </Router>
+      </ProductState>
     </CompanyState>
   );
 }

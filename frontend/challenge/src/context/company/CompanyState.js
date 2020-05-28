@@ -6,7 +6,8 @@ import {
   GET_COMPANIES,
   ADD_COMPANY,
   VALIDATE_FORM,
-  GET_CURRENT_PROJECT
+  GET_CURRENT_PROJECT,
+  LEAVE_COMPANY
 } from "../../types";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -58,6 +59,12 @@ const CompanyState = props => {
     {
       id: 8,
       name: "JAG Peru",
+      ruc: "10987654320",
+      website: "https://evilcorp.com",
+    },
+    {
+      id: 9,
+      name: "EquipIndustry Peru",
       ruc: "10987654320",
       website: "https://evilcorp.com",
     }
@@ -114,6 +121,14 @@ const CompanyState = props => {
     })
   }
 
+  //ELIMA O DEJA UN PROYECTO
+  const eliminarCompany = companyId => {
+    dispatch({
+      type: LEAVE_COMPANY,
+      payload: companyId
+    })
+  }
+
   return (
     <CompanyContext.Provider
       value={{
@@ -130,7 +145,9 @@ const CompanyState = props => {
         validateForm,
         //project current
         company: state.company,
-        proyectoActual
+        proyectoActual,
+        //leave company
+        eliminarCompany
       }}
     >
       {props.children}

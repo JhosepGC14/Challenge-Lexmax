@@ -2,85 +2,16 @@ import React, { useContext } from "react";
 import CardProduct from "../products/components/CardProduct";
 import style from "./Product.module.css";
 import CompanyContext from "../../context/company/CompanyContext";
+import ProductContext from "../../context/products/ProductContex";
 
 const Products = () => {
-  const products = [
-    {
-      id: 1,
-      companyId: 1,
-      name: "Agua de Mesa",
-      sku: "DP18-Bk-T1",
-      price: 100,
-      discount: 10,
-    },
-    {
-      id: 2,
-      companyId: 1,
-      name: "Coca-Cola",
-      sku: "DP18-Bk-T1",
-      price: 100,
-      discount: 10,
-    },
-    {
-      id: 3,
-      companyId: 1,
-      name: "product 2",
-      sku: "DP18-Bk-T1",
-      price: 100,
-      discount: 10,
-    },
-    {
-      id: 4,
-      companyId: 1,
-      name: "product 2",
-      sku: "DP18-Bk-T1",
-      price: 100,
-      discount: 10,
-    },
-    {
-      id: 5,
-      companyId: 1,
-      name: "product 2",
-      sku: "DP18-Bk-T1",
-      price: 100,
-      discount: 10,
-    },
-    {
-      id: 6,
-      companyId: 1,
-      name: "product 2",
-      sku: "DP18-Bk-T1",
-      price: 100,
-      discount: 10,
-    },
-    {
-      id: 7,
-      companyId: 1,
-      name: "product 2",
-      sku: "DP18-Bk-T1",
-      price: 100,
-      discount: 10,
-    },
-    {
-      id: 8,
-      companyId: 1,
-      name: "product 2",
-      sku: "DP18-Bk-T1",
-      price: 100,
-      discount: 10,
-    },
-    {
-      id: 9,
-      companyId: 1,
-      name: "product 2",
-      sku: "DP18-Bk-T1",
-      price: 100,
-      discount: 10,
-    },
-  ];
-  // Extrar proyectos de state inicial
+  // Extrar companias de state inicial
   const proyectosContext = useContext(CompanyContext);
-  const { company } = proyectosContext;
+  const { company, eliminarCompany } = proyectosContext;
+
+  // Extrar productos de state inicial
+  const productsContext = useContext(ProductContext);
+  const { productsCompany } = productsContext;
 
   if (!company)
     return (
@@ -92,16 +23,63 @@ const Products = () => {
   //array destructuring para extraer la compañia actual
   const [proyectoActual] = company;
 
+  //eliminar compañia
+  const onClickEliminar = () => {
+    eliminarCompany(proyectoActual.id);
+  };
+
   return (
     <div className={style.container}>
       <h3>All Products of {proyectoActual.name}</h3>
-      <div className={style.gridProduct}>
-        {products.length === 0 ? (
-          <div>
-            <h2>No hay productos</h2>
+      <div className={style.leave}>
+        <a href="#!" data-toggle="modal" data-target="#exampleModal">
+          Leave Company ->
+        </a>
+      </div>
+      <div
+        className="modal fade"
+        id="exampleModal"
+        tabIndex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className={`modal-title ${style.h5}`} id="exampleModalLabel">
+                Leave Company
+              </h5>
+              <button
+                type="button"
+                className="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="modal-body">
+              <h5 className={style.h5}>¿Do you want to leave this Company?</h5>
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-primary"
+                data-dismiss="modal"
+                onClick={onClickEliminar}
+              >
+                Si, Dejar Compañia
+              </button>
+            </div>
           </div>
+        </div>
+      </div>
+      <div className={style.gridProduct}>
+        {productsCompany.length === 0 ? (
+          <h2 className="text-center">No hay productos</h2>
         ) : (
-          products.map((products) => (
+          productsCompany.map((products) => (
             <CardProduct key={products.id} products={products} />
           ))
         )}

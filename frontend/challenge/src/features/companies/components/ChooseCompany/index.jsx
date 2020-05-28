@@ -15,7 +15,12 @@ const ChooseCompany = () => {
   });
   //validar si hay o no compañias a mostrar
   if (companies.length === 0) {
-    return <h1 className="text-center">There's no companies to show you...</h1>;
+    return (
+      <div className="text-center">
+        <h2>No hay Compañias, crea tu compañia.</h2>
+        <Link to="/createcompany">Create tu compañia Aqui</Link>
+      </div>
+    );
   }
 
   return (

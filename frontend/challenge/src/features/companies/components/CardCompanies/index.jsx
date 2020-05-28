@@ -2,19 +2,34 @@ import React, { useContext } from "react";
 import style from "./CardCompanies.module.css";
 import { Link } from "react-router-dom";
 import CompanyContext from "../../../../context/company/CompanyContext";
+import ProductContext from "../../../../context/products/ProductContex";
 
 const CardCompanies = ({ companies }) => {
   //extrae compañias desde el state inicial
   const companiesContext = useContext(CompanyContext);
   const { proyectoActual } = companiesContext;
 
+  //obtener la funcion del context de product
+  const productsContext = useContext(ProductContext);
+  const { getProducts } = productsContext;
+
+  //funcion para agregar la compañia actual
+  const seleccionarCompany = (id) => {
+    proyectoActual(id); //fijar la compañia actual
+    getProducts(id); //filtrar las los productos cuando se le click
+  };
+
   return (
     <div className={style.grid}>
       <div className={style.cardcompany}>
         <h2>
-          <a onClick={() => proyectoActual(companies.id)} href="#!">
+          <button
+            onClick={() => seleccionarCompany(companies.id)}
+            type="button"
+            className="btn btn-light"
+          >
             {companies.name}
-          </a>
+          </button>
         </h2>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
@@ -24,49 +39,6 @@ const CardCompanies = ({ companies }) => {
         <Link className={style.absolute} to="/updatecompany">
           Edit Company+
         </Link>
-      </div>
-      <div className={style.leave}>
-        <a href="#!" data-toggle="modal" data-target="#exampleModal">
-          Leave Company ->
-        </a>
-      </div>
-      <div
-        className="modal fade"
-        id="exampleModal"
-        tabIndex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className={`modal-title ${style.h5}`} id="exampleModalLabel">
-                Leave Company
-              </h5>
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body">
-              <h5 className={style.h5}>Your Left Chemifrabik</h5>
-            </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-primary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

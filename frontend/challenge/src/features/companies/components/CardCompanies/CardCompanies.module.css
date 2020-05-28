@@ -1,12 +1,11 @@
 .grid {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 350px;
-  grid-column-gap: 30px;
   align-items: center;
   height: 100%;
-  margin: 0px 0px 50px 0px;
   background: #f1f9ff;
+  padding: 0px 30px;
 }
 
 .cardcompany {
