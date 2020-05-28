@@ -1,20 +1,9 @@
-.container {
-  background: white;
-  text-align: center;
-  border-radius: 5px;
+.containerAside {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 
-.container h3 {
-  margin-bottom: 30px;
-  color: #2699fb;
-}
-
-.gridProduct {
-  display: grid;
-  grid-template-columns: 200px 200px 200px 200px;
-  grid-template-rows: 300px;
-  grid-column-gap: 30px;
-  grid-row-gap: 30px;
-  justify-content: center;
-  padding-bottom: 30px;
+.containerListProducts{
+  width: 50%;
 }

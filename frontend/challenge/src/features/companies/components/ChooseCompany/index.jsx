@@ -12,7 +12,7 @@ const ChooseCompany = () => {
   //obtener compañias cuando carga el componente
   useEffect(() => {
     getCompanies();
-  }, []);
+  });
   //validar si hay o no compañias a mostrar
   if (companies.length === 0) {
     return <h1 className="text-center">There's no companies to show you...</h1>;

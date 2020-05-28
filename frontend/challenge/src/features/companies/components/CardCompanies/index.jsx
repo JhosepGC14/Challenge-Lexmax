@@ -3,17 +3,17 @@ import style from "./CardCompanies.module.css";
 import { Link } from "react-router-dom";
 import CompanyContext from "../../../../context/company/CompanyContext";
 
-const CardCompanies = ({ companias }) => {
+const CardCompanies = ({ companies }) => {
   //extrae compañias desde el state inicial
-  const currentCompany = useContext(CompanyContext);
-  const { selectCurrent } = currentCompany;
+  const companiesContext = useContext(CompanyContext);
+  const { proyectoActual } = companiesContext;
 
   return (
     <div className={style.grid}>
       <div className={style.cardcompany}>
         <h2>
-          <a onClick={() => selectCurrent(companias.id)} href="#!">
-            {companias.name}
+          <a onClick={() => proyectoActual(companies.id)} href="#!">
+            {companies.name}
           </a>
         </h2>
         <p>

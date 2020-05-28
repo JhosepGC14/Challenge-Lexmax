@@ -1,4 +1,10 @@
-import { VIEW_USERNAME, GET_COMPANIES, ADD_COMPANY, VALIDATE_FORM, GET_CURRENT_PROJECT } from "../../types";
+import {
+  VIEW_USERNAME,
+  GET_COMPANIES,
+  ADD_COMPANY,
+  VALIDATE_FORM,
+  GET_CURRENT_PROJECT
+} from "../../types";
 
 export default (state, action) => {
   switch (action.type) {

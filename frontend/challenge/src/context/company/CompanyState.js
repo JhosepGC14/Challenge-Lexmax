@@ -1,7 +1,13 @@
 import React, { useReducer } from 'react';
 import CompanyContext from "./CompanyContext";
 import CompanyReducer from "./CompanyReducer";
-import { VIEW_USERNAME, GET_COMPANIES, ADD_COMPANY, VALIDATE_FORM, GET_CURRENT_PROJECT } from "../../types";
+import {
+  VIEW_USERNAME,
+  GET_COMPANIES,
+  ADD_COMPANY,
+  VALIDATE_FORM,
+  GET_CURRENT_PROJECT
+} from "../../types";
 import { v4 as uuidv4 } from 'uuid';
 
 
@@ -101,7 +107,7 @@ const CompanyState = props => {
   }
 
   //SELECIONA EL PROYECTO QUE EL USUARIO DIO CLICK
-  const selectCurrent = companyId => {
+  const proyectoActual = companyId => {
     dispatch({
       type: GET_CURRENT_PROJECT,
       payload: companyId
@@ -124,7 +130,7 @@ const CompanyState = props => {
         validateForm,
         //project current
         company: state.company,
-        selectCurrent
+        proyectoActual
       }}
     >
       {props.children}
