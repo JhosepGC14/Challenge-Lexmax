@@ -7,7 +7,6 @@ Configuration to run the environment
 .. code:: shell
 
     git clone https://github.com/JhosepGC14/Challenge-Lexmax.git
-    cd frontend/
     cd challenge/
 
 
