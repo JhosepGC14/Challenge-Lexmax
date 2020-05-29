@@ -23,13 +23,9 @@ const CardCompanies = ({ companies }) => {
     <div className={style.grid}>
       <div className={style.cardcompany}>
         <h2>
-          <button
-            onClick={() => seleccionarCompany(companies.id)}
-            type="button"
-            className="btn btn-light"
-          >
+          <a onClick={() => seleccionarCompany(companies.id)} href="#!">
             {companies.name}
-          </button>
+          </a>
         </h2>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus

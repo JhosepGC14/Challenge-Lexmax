@@ -10,13 +10,13 @@ const CreateCompany = () => {
 
   //state para crear compañia
   const [company, createCompany] = useState({
-    nameCompany: "",
+    name: "",
     ruc: "",
     website: "",
   });
 
   //extraer compañias
-  const { nameCompany, ruc, website } = company;
+  const { name, ruc, website } = company;
 
   //definimos el onChange
   const onCompany = (e) => {
@@ -31,7 +31,7 @@ const CreateCompany = () => {
     e.preventDefault();
 
     //validar el proyecto
-    if (nameCompany === "") {
+    if (name === "") {
       validateForm();
       return;
     }
@@ -41,7 +41,7 @@ const CreateCompany = () => {
 
     //reiniciar el form
     createCompany({
-      nameCompany: "",
+      name: "",
       ruc: "",
       website: "",
     });
@@ -57,8 +57,8 @@ const CreateCompany = () => {
           className="form-control"
           type="text"
           placeholder="Ejem: LexMax Corp."
-          value={nameCompany}
-          name="nameCompany"
+          value={name}
+          name="name"
           onChange={onCompany}
         />
         <label htmlFor="">RUC:</label>

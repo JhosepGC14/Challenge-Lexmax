@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import CardCompanies from "../CardCompanies";
 import style from "./Companies.module.css";
 import CompanyContext from "../../../../context/company/CompanyContext";
+import CreateCompany from "../CreateCompany";
 
 const ListCompanies = () => {
   const chooseCompany = useContext(CompanyContext);
@@ -26,6 +27,30 @@ const ListCompanies = () => {
 
   return (
     <div className={style.container}>
+      <div className={style.create}>
+        <button
+          type="button"
+          data-toggle="modal"
+          data-target="#exampleModal1"
+          className="btn btn-primary"
+        >
+          CREATE NEW COMPANY
+        </button>
+      </div>
+      <div
+        className="modal fade"
+        id="exampleModal1"
+        tabIndex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content p-5">
+            <CreateCompany />
+          </div>
+        </div>
+      </div>
       {companies.map((companies) => (
         <CardCompanies key={companies.id} companies={companies} />
       ))}
