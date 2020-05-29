@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react';
 import ProductContext from "./ProductContex";
 import ProductReducer from "./ProductReducer";
+import { v4 as uuidv4 } from 'uuid';
 import {
   PRODUCTS_COMPANY,
   ADD_PRODUCTS,
@@ -25,79 +26,79 @@ const ProductState = props => {
         id: 2,
         companyId: 1,
         name: "Coca-Cola",
-        sku: "DP18-Bk-T1",
+        sku: "DP18-RT-T1",
         price: 100,
         discount: 10,
       },
       {
         id: 3,
         companyId: 3,
-        name: "product 2",
-        sku: "DP18-Bk-T1",
+        name: "Inka Cola Zero",
+        sku: "DP18-DE-T2",
         price: 100,
         discount: 10,
       },
       {
         id: 4,
         companyId: 3,
-        name: "product 2",
-        sku: "DP18-Bk-T1",
+        name: "Laptop MSI GTX2800",
+        sku: "DP18-FG-T1",
         price: 100,
         discount: 10,
       },
       {
         id: 5,
         companyId: 5,
-        name: "product 2",
-        sku: "DP18-Bk-T1",
+        name: "Huawei Mate 20 pro",
+        sku: "DP18-Vk-T1",
         price: 100,
         discount: 10,
       },
       {
         id: 6,
         companyId: 6,
-        name: "product 2",
-        sku: "DP18-Bk-T1",
+        name: "iPhone 11 Pro Max",
+        sku: "DP18-Ak-T1",
         price: 100,
         discount: 10,
       },
       {
         id: 7,
         companyId: 7,
-        name: "product 2",
-        sku: "DP18-Bk-T1",
+        name: "Mouse Inhalambrico",
+        sku: "DP18-BC-T1",
         price: 100,
         discount: 10,
       },
       {
         id: 8,
         companyId: 8,
-        name: "product 2",
-        sku: "DP18-Bk-T1",
+        name: "Cable USB-C",
+        sku: "DP18-Bk-D5",
         price: 100,
         discount: 10,
       },
       {
         id: 9,
         companyId: 9,
-        name: "product 2",
-        sku: "DP18-Bk-T1",
+        name: "Macbook Pro 2016 Core i9",
+        sku: "DP18-Bk-GH",
         price: 100,
         discount: 10,
       },
       {
         id: 11,
         companyId: 1,
-        name: "product 1",
-        sku: "DP18-Bk-T",
+        name: "Cargador Portatil",
+        sku: "DP18-Bk-FR",
         price: 100,
         discount: 10
       },
       {
         id: 12,
         companyId: 1,
-        name: "product 2",
-        sku: "DP18-Bk-T1",
+        name: "PlayStation 4",
+        sku: "DP18-Bk-F4",
         price: 100,
         discount: 10
       }
@@ -121,6 +122,7 @@ const ProductState = props => {
 
   //Agregar productos
   const addProducts = products => {
+    products.id = uuidv4();
     dispatch({
       type: ADD_PRODUCTS,
       payload: products

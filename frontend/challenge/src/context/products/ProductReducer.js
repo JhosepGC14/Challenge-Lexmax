@@ -40,7 +40,8 @@ export default (state, action) => {
     case ACTUALIZAR_PRODUCTO:
       return {
         ...state,
-        products: state.products.map(products => products.id === action.payload.id ? action.payload : products)
+        products: state.products.map(products => products.id === action.payload.id ? action.payload : products),
+        productEdit: null
       }
     default:
       return state;

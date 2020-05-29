@@ -58,7 +58,8 @@ const CreateProduct = () => {
     //validar
     if (
       name.trim() === ""
-      // || sku.trim() === "" ||
+      // ||
+      // sku.trim() === "" ||
       // price.trim() === "" ||
       // discount.trim() === ""
     ) {
@@ -71,11 +72,11 @@ const CreateProduct = () => {
       //agregarel nuevo producto al state de productos
       products.companyId = proyectoActual.id;
       addProducts(products);
-    } else { 
+    } else {
       //actualiza el producto
       actualizarProducto(products);
     }
-    
+
     getProducts(proyectoActual.id);
 
     //reiniciar el form

@@ -1,5 +1,4 @@
 import CreateProduct from '../components/CreateProduct';
-import UpdateProduct from '../components/UpdateProduct';
 import ProductDetail from '../components/ProductDetail';
 import Products from '..';
 
@@ -12,11 +11,6 @@ const ProductRoutes = [
   {
     path: "/createproduct",
     component: CreateProduct,
-    auth: false,
-  },
-  {
-    path: "/updateproduct",
-    component: UpdateProduct,
     auth: false,
   },
   {

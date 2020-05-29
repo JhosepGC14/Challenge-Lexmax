@@ -11,6 +11,7 @@ const ListCompanies = () => {
   //obtener compañias cuando carga el componente
   useEffect(() => {
     getCompanies();
+    //eslint-disable-next-line
   }, []);
 
   //validar si hay o no compañias a mostrar
