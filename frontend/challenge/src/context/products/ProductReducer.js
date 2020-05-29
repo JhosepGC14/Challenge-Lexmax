@@ -4,7 +4,7 @@ import {
   VALIDATE_PRODUCTS,
   DELETE_PRODUCTS,
   GET_CURRENT_PRODUCTS,
-  UPDATE_PRODUCTS
+  ACTUALIZAR_PRODUCTO
 } from "../../types"
 
 
@@ -37,10 +37,10 @@ export default (state, action) => {
         ...state,
         productEdit: action.payload
       }
-    case UPDATE_PRODUCTS:
+    case ACTUALIZAR_PRODUCTO:
       return {
         ...state,
-        products: state.products.filter(products => products.id === action.payload.id ? action.payload : products)
+        products: state.products.map(products => products.id === action.payload.id ? action.payload : products)
       }
     default:
       return state;

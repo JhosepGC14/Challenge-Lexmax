@@ -4,14 +4,6 @@ import ProductContext from "../../../../context/products/ProductContex";
 import CompanyContext from "../../../../context/company/CompanyContext";
 
 const CreateProduct = () => {
-  //state del form
-  const [products, saveProduct] = useState({
-    name: "",
-    sku: "",
-    price: "",
-    discount: "",
-  });
-
   const proyectosContext = useContext(CompanyContext);
   const { company } = proyectosContext;
 
@@ -23,7 +15,7 @@ const CreateProduct = () => {
     errorProduct,
     getProducts,
     productEdit,
-    updateProduct,
+    actualizarProducto,
   } = productsContext;
 
   //definimos el useEffecT
@@ -39,6 +31,14 @@ const CreateProduct = () => {
       });
     }
   }, [productEdit]);
+
+  //state del form
+  const [products, saveProduct] = useState({
+    name: "",
+    sku: "",
+    price: "",
+    discount: "",
+  });
 
   const { name, sku, price, discount } = products;
 
@@ -57,10 +57,10 @@ const CreateProduct = () => {
     e.preventDefault();
     //validar
     if (
-      name.trim() === "" ||
-      sku.trim() === "" ||
-      price.trim() === "" ||
-      discount.trim() === ""
+      name.trim() === ""
+      // || sku.trim() === "" ||
+      // price.trim() === "" ||
+      // discount.trim() === ""
     ) {
       validateProducts();
       return;
@@ -71,10 +71,11 @@ const CreateProduct = () => {
       //agregarel nuevo producto al state de productos
       products.companyId = proyectoActual.id;
       addProducts(products);
-    } else {
+    } else { 
       //actualiza el producto
-      updateProduct(products);
+      actualizarProducto(products);
     }
+    
     getProducts(proyectoActual.id);
 
     //reiniciar el form
@@ -84,7 +85,6 @@ const CreateProduct = () => {
       price: "",
       discount: "",
     });
-    
   };
 
   return (
@@ -134,9 +134,11 @@ const CreateProduct = () => {
             />
           </div>
         </div>
-        <button type="submit" className="btn btn-primary mt-3 w-100">
-          {productEdit ? "UPDATE NOW" : "CREATE NOW"}
-        </button>
+        <input
+          type="submit"
+          className="btn btn-primary mt-3 w-100"
+          value={productEdit ? "UPDATE NOW" : "CREATE NOW"}
+        />
       </form>
       {errorProduct ? (
         <p className="bg-danger text-white rounded">

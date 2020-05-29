@@ -7,7 +7,7 @@ import {
   VALIDATE_PRODUCTS,
   DELETE_PRODUCTS,
   GET_CURRENT_PRODUCTS,
-  UPDATE_PRODUCTS
+  ACTUALIZAR_PRODUCTO
 } from "../../types"
 
 const ProductState = props => {
@@ -151,9 +151,9 @@ const ProductState = props => {
   }
 
   //EDITA O MODIFICA EL PRODUCTO
-  const updateProduct = products => {
+  const actualizarProducto = products => {
     dispatch({
-      type: UPDATE_PRODUCTS,
+      type: ACTUALIZAR_PRODUCTO,
       payload: products
     })
   }
@@ -175,7 +175,7 @@ const ProductState = props => {
         //editar producto
         productEdit: state.productEdit,
         editProduct,
-        updateProduct
+        actualizarProducto
       }}
     >
       {props.children}
