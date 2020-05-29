@@ -1,7 +1,6 @@
 .createContainer {
-  width: 45%;
+  width: 100%;
   margin: auto;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -1,16 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import style from "./CreateProduct.module.css";
 import ProductContext from "../../../../context/products/ProductContex";
 import CompanyContext from "../../../../context/company/CompanyContext";
 
 const CreateProduct = () => {
-  // Extrar productos de state inicial
-  const productsContext = useContext(ProductContext);
-  const { addProducts } = productsContext;
-
-  const proyectosContext = useContext(CompanyContext);
-  const { company } = proyectosContext;
-
   //state del form
   const [products, saveProduct] = useState({
     name: "",
@@ -18,9 +11,39 @@ const CreateProduct = () => {
     price: "",
     discount: "",
   });
+
+  const proyectosContext = useContext(CompanyContext);
+  const { company } = proyectosContext;
+
+  // Extrar productos de state inicial
+  const productsContext = useContext(ProductContext);
+  const {
+    addProducts,
+    validateProducts,
+    errorProduct,
+    getProducts,
+    productEdit,
+    updateProduct,
+  } = productsContext;
+
+  //definimos el useEffecT
+  useEffect(() => {
+    if (productEdit !== null) {
+      saveProduct(productEdit);
+    } else {
+      saveProduct({
+        name: "",
+        sku: "",
+        price: "",
+        discount: "",
+      });
+    }
+  }, [productEdit]);
+
   const { name, sku, price, discount } = products;
 
   if (!company) return null;
+
   const [proyectoActual] = company;
 
   const handleChange = (e) => {
@@ -33,13 +56,35 @@ const CreateProduct = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     //validar
+    if (
+      name.trim() === "" ||
+      sku.trim() === "" ||
+      price.trim() === "" ||
+      discount.trim() === ""
+    ) {
+      validateProducts();
+      return;
+    }
 
-    //Pasar la validacion
+    //revisamos si es edicion o si es un nuevo producto
+    if (productEdit === null) {
+      //agregarel nuevo producto al state de productos
+      products.companyId = proyectoActual.id;
+      addProducts(products);
+    } else {
+      //actualiza el producto
+      updateProduct(products);
+    }
+    getProducts(proyectoActual.id);
 
-    //agregarel nuevo producto al state de productos
-    products.companyId = proyectoActual.id;
-    addProducts(products);
     //reiniciar el form
+    saveProduct({
+      name: "",
+      sku: "",
+      price: "",
+      discount: "",
+    });
+    
   };
 
   return (
@@ -90,9 +135,14 @@ const CreateProduct = () => {
           </div>
         </div>
         <button type="submit" className="btn btn-primary mt-3 w-100">
-          CREATE NOW
+          {productEdit ? "UPDATE NOW" : "CREATE NOW"}
         </button>
       </form>
+      {errorProduct ? (
+        <p className="bg-danger text-white rounded">
+          Es Obligatorio llenar todos los campos
+        </p>
+      ) : null}
     </div>
   );
 };

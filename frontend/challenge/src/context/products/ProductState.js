@@ -3,7 +3,11 @@ import ProductContext from "./ProductContex";
 import ProductReducer from "./ProductReducer";
 import {
   PRODUCTS_COMPANY,
-  ADD_PRODUCTS
+  ADD_PRODUCTS,
+  VALIDATE_PRODUCTS,
+  DELETE_PRODUCTS,
+  GET_CURRENT_PRODUCTS,
+  UPDATE_PRODUCTS
 } from "../../types"
 
 const ProductState = props => {
@@ -98,7 +102,9 @@ const ProductState = props => {
         discount: 10
       }
     ],
-    productsCompany: null
+    productsCompany: null,
+    errorProduct: false,
+    productEdit: null
   }
 
 
@@ -121,6 +127,37 @@ const ProductState = props => {
     })
   }
 
+  //validar form de creacion de product
+  const validateProducts = () => {
+    dispatch({
+      type: VALIDATE_PRODUCTS
+    })
+  }
+
+  //ELIMINAR PRODUCTO
+  const deleteProduct = id => {
+    dispatch({
+      type: DELETE_PRODUCTS,
+      payload: id
+    })
+  }
+
+  //EXTRAER PRODUCTO A EDITAR
+  const editProduct = products => {
+    dispatch({
+      type: GET_CURRENT_PRODUCTS,
+      payload: products
+    })
+  }
+
+  //EDITA O MODIFICA EL PRODUCTO
+  const updateProduct = products => {
+    dispatch({
+      type: UPDATE_PRODUCTS,
+      payload: products
+    })
+  }
+
   return (
     <ProductContext.Provider
       value={{
@@ -129,7 +166,16 @@ const ProductState = props => {
         getProducts,
         productsCompany: state.productsCompany,
         //agregar productos por ID
-        addProducts
+        addProducts,
+        //validar creacion de products
+        errorProduct: state.errorProduct,
+        validateProducts,
+        //eliminar producto
+        deleteProduct,
+        //editar producto
+        productEdit: state.productEdit,
+        editProduct,
+        updateProduct
       }}
     >
       {props.children}

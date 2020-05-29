@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import CardProduct from "../products/components/CardProduct";
+import CreateProduct from "../products/components/CreateProduct";
 import style from "./Product.module.css";
 import CompanyContext from "../../context/company/CompanyContext";
 import ProductContext from "../../context/products/ProductContex";
@@ -32,9 +33,14 @@ const Products = () => {
     <div className={style.container}>
       <h3>All Products of {proyectoActual.name}</h3>
       <div className={style.leave}>
-        <a href="#!" data-toggle="modal" data-target="#exampleModal">
+        <button
+          type="button"
+          data-toggle="modal"
+          data-target="#exampleModal"
+          className="btn btn-primary mb-5"
+        >
           Leave Company ->
-        </a>
+        </button>
       </div>
       <div
         className="modal fade"
@@ -69,15 +75,18 @@ const Products = () => {
                 data-dismiss="modal"
                 onClick={onClickEliminar}
               >
-                Si, Dejar Compañia
+                Si, Dejar Empresa
               </button>
             </div>
           </div>
         </div>
       </div>
+      <CreateProduct />
       <div className={style.gridProduct}>
         {productsCompany.length === 0 ? (
-          <h2 className="text-center">No hay productos</h2>
+          <div className={style.containerForm}>
+            <h2 className="text-center">No hay Productos en la Empresa</h2>
+          </div>
         ) : (
           productsCompany.map((products) => (
             <CardProduct key={products.id} products={products} />

@@ -7,7 +7,7 @@ import {
   ADD_COMPANY,
   VALIDATE_FORM,
   GET_CURRENT_PROJECT,
-  LEAVE_COMPANY
+  LEAVE_COMPANY,
 } from "../../types";
 import { v4 as uuidv4 } from 'uuid';
 
