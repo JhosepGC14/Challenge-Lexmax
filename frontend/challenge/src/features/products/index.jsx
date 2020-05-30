@@ -36,7 +36,7 @@ const Products = () => {
         <button
           type="button"
           data-toggle="modal"
-          data-target="#exampleModal"
+          data-target="#leavecompany"
           className="btn btn-primary mb-5"
         >
           Leave Company ->
@@ -44,7 +44,7 @@ const Products = () => {
       </div>
       <div
         className="modal fade"
-        id="exampleModal"
+        id="leavecompany"
         tabIndex="-1"
         role="dialog"
         aria-labelledby="exampleModalLabel"

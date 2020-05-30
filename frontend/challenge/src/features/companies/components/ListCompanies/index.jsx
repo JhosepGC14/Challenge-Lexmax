@@ -20,7 +20,7 @@ const ListCompanies = () => {
     return (
       <div className="text-center mt-5">
         <h2>No hay compañias, crea tu compañia.</h2>
-        <Link to="/createcompany">Create tu compañia Aqui</Link>
+        <Link to="/createcompany">CREATE NEW COMPANY</Link>
       </div>
     );
   }
@@ -31,7 +31,7 @@ const ListCompanies = () => {
         <button
           type="button"
           data-toggle="modal"
-          data-target="#exampleModal1"
+          data-target="#createcompany"
           className="btn btn-primary"
         >
           CREATE NEW COMPANY
@@ -39,7 +39,7 @@ const ListCompanies = () => {
       </div>
       <div
         className="modal fade"
-        id="exampleModal1"
+        id="createcompany"
         tabIndex="-1"
         role="dialog"
         aria-labelledby="exampleModalLabel"

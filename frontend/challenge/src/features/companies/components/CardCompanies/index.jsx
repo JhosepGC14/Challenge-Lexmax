@@ -27,6 +27,8 @@ const CardCompanies = ({ companies }) => {
             {companies.name}
           </a>
         </h2>
+        <p>{companies.ruc}</p>
+        <p>{companies.website}</p>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
           ipsum et vero harum expedita animi praesentium voluptatem accusamus,
