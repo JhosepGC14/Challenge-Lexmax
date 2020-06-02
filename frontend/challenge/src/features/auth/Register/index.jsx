@@ -1,19 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import style from "./Register.module.css";
 import image from "../../../assets/images/image1.png";
 import { Link } from "react-router-dom";
+import AlertaContext from "../../../context/alertas/alertaContext";
+import AuthContext from "../../../context/autentication/authContext";
 
-const Register = () => {
+const Register = (props) => {
+  //extraemos los valores del context
+  const alertaContext = useContext(AlertaContext);
+  const { alert, showAlert } = alertaContext;
+
+  const authContext = useContext(AuthContext);
+  const { registerUser, mensaje, authenticated } = authContext;
+
+  //en caso de que el usuario se haya autenticado o registrado o sea un registro duplicado
+  useEffect(() => {
+    if (authenticated) {
+      props.history.push("/companies");
+    }
+
+    if (mensaje) {
+      showAlert(mensaje.msg, mensaje.categoria);
+    }
+  }, [mensaje, authenticated, props.histroy]);
+
   //state para registrar
   const [register, saveRegister] = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    passwordConfirmation: "",
   });
 
   //extraer el usuario
-  const { username, email, password, confirmPassword } = register;
+  const { name, email, password, passwordConfirmation } = register;
 
   //definimos el onChange
   const registrarme = (e) => {
@@ -28,20 +48,47 @@ const Register = () => {
     e.preventDefault();
 
     //Validar que no haya campos vacios
-
+    if (
+      name.trim() === "" ||
+      email.trim() === "" ||
+      password.trim() === "" ||
+      passwordConfirmation.trim() === ""
+    ) {
+      showAlert("Todos los campos son obligatorios", "alert-danger");
+      return;
+    }
 
     //Password minimo de 6 caracteres
-
+    if (password.length < 6) {
+      showAlert(
+        "El password debe ser de al menos 6 caracteres",
+        "alert-danger"
+      );
+      return;
+    }
 
     //validar si ambos password son iguales
-
-    
+    if (password !== passwordConfirmation) {
+      showAlert("Las Contraseñas deben ser iguales", "alert-danger");
+      return;
+    }
 
     //Pasar al action (reduce)
+    registerUser({
+      name,
+      email,
+      password,
+      passwordConfirmation,
+    });
   };
 
   return (
     <div className={style.container}>
+      {alert ? (
+        <div className={`text-center alert ${alert.categoria}`}>
+          {alert.msg}
+        </div>
+      ) : null}
       <div className={style.row}>
         <div className="col">
           <figure>
@@ -52,14 +99,14 @@ const Register = () => {
           <label>Access to Plataform</label>
           <h1>Register</h1>
           <div className="form-group">
-            <label htmlFor="username">Name Complete:</label>
+            <label htmlFor="name">Name Complete:</label>
             <input
               className="form-control"
-              id="username"
+              id="name"
               type="text"
               placeholder="Name Complete"
-              name="username"
-              value={username}
+              name="name"
+              value={name}
               onChange={registrarme}
             />
             <label htmlFor="email">Email Adress:</label>
@@ -88,8 +135,8 @@ const Register = () => {
               type="password"
               id="confirmPass"
               placeholder="Confirm Password"
-              value={confirmPassword}
-              name="confirmPassword"
+              value={passwordConfirmation}
+              name="passwordConfirmation"
               onChange={registrarme}
             />
           </div>

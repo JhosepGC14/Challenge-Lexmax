@@ -1,9 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import style from "./Login.module.css";
 import image from "../../../assets/images/image1.png";
 import { Link } from "react-router-dom";
+import AlertaContext from "../../../context/alertas/alertaContext";
+import AuthContext from "../../../context/autentication/authContext";
 
-const Login = () => {
+const Login = (props) => {
+  //extraemos los valores del context
+  const alertaContext = useContext(AlertaContext);
+  const { alert, showAlert } = alertaContext;
+
+  const authContext = useContext(AuthContext);
+  const { loginUser, mensaje, authenticated } = authContext;
+
+  //en caso de que el passwrod o usuario no exista
+  useEffect(() => {
+    if (authenticated) {
+      props.history.push("/home");
+    }
+
+    if (mensaje) {
+      showAlert(mensaje.msg, mensaje.categoria);
+    }
+  }, [mensaje, authenticated, props.histroy]);
+
   //state para iniciar sesion
   const [user, saveUser] = useState({
     email: "",
@@ -26,12 +46,25 @@ const Login = () => {
     e.preventDefault();
 
     //Validar que no haya campos vacios
+    if (email.trim() === "" || password.trim() === "") {
+      showAlert("Todos los campos son obligatorios", "alert-danger");
+      return;
+    }
 
     //Pasar al action (reduce)
+    loginUser({
+      email,
+      password,
+    });
   };
 
   return (
     <div className={style.container}>
+      {alert ? (
+        <div className={`text-center alert ${alert.categoria}`}>
+          {alert.msg}
+        </div>
+      ) : null}
       <div className={style.row}>
         <div className="col">
           <figure>
@@ -63,11 +96,7 @@ const Login = () => {
               onChange={iniciarSesion}
             />
           </div>
-          <button
-            type="submit"
-            className="btn btn-primary mb-3"
-            value="Iniciar Sesion"
-          >
+          <button type="submit" className="btn btn-primary mb-3">
             Ingresar
           </button>
           <Link to="/register">Obtener Cuenta</Link>

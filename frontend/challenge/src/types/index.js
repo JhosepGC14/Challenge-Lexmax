@@ -13,3 +13,18 @@ export const VALIDATE_PRODUCTS = 'VALIDATE_PRODUCTS';
 export const DELETE_PRODUCTS = 'DELETE_PRODUCTS';
 export const GET_CURRENT_PRODUCTS = 'GET_CURRENT_PRODUCTS';
 export const ACTUALIZAR_PRODUCTO = 'ACTUALIZAR_PRODUCTO';
+
+//ALERTAS
+export const SHOW_ALERT = 'SHOW_ALERT';
+export const HIDE_ALERT = 'HIDE_ALERT';
+
+//AUTHENTICATION
+//register
+export const REGISTER_SUCESS = 'REGISTER_SUCESS';
+export const REGISTER_ERROR = 'REGISTER_ERROR';
+//login
+export const LOGIN_SUCESS = 'LOGIN_SUCESS';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const GET_USER = 'GET_USER';
+//logout
+export const LOGOUT = 'LOGOUT';
