@@ -1,12 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import style from "./CreateCompany.module.css";
 import CompanyContext from "../../../../context/company/CompanyContext";
-// import { Link } from "react-router-dom";
 
 const CreateCompany = () => {
   //extrae compañias desde el state inicial
   const addCompany = useContext(CompanyContext);
-  const { addCompanies, errorForm, validateForm } = addCompany;
+  const { addCompanies, errorForm, validateForm, alreadyCreate } = addCompany;
 
   //state para crear compañia
   const [company, createCompany] = useState({
@@ -14,6 +14,14 @@ const CreateCompany = () => {
     ruc: "",
     website: "",
   });
+
+  const history = useHistory();
+  useEffect(() => {
+    if (alreadyCreate === true) {
+      history.push("/companies");
+    }
+    // eslint-disable-next-line
+  }, [alreadyCreate]);
 
   //extraer compañias
   const { name, ruc, website } = company;
@@ -80,13 +88,11 @@ const CreateCompany = () => {
           onChange={onCompany}
         />
       </div>
-      {/* <Link to="/choosecompany"> */}
       <button type="submit" className="btn btn-primary" value="createCompany">
         CREATE AND JOIN COMPANY
       </button>
-      {/* </Link> */}
       {errorForm ? (
-        <p class="text-light bg-danger mt-3 rounded">
+        <p className="text-light bg-danger mt-3 rounded">
           Es Obligatorio Completar Todos los Campos
         </p>
       ) : null}

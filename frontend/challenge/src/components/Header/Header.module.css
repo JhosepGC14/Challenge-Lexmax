@@ -28,3 +28,9 @@
   color: #2699fb;
   list-style: none !important;
 }
+
+.btn_blank {
+  background: none;
+  border: none;
+  color: #2699fb;
+}

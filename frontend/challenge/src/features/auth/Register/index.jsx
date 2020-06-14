@@ -22,7 +22,8 @@ const Register = (props) => {
     if (mensaje) {
       showAlert(mensaje.msg, mensaje.categoria);
     }
-  }, [mensaje, authenticated, props.histroy]);
+    // eslint-disable-next-line
+  }, [mensaje, authenticated, props.history]);
 
   //state para registrar
   const [register, saveRegister] = useState({

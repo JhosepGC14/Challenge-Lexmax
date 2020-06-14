@@ -11,6 +11,7 @@ const Companies = () => {
 
   useEffect(() => {
     userAuthenticated();
+    // eslint-disable-next-line
   }, []);
 
   return (

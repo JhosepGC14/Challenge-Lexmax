@@ -2,6 +2,7 @@ import React from "react";
 import style from "./Main.module.css";
 import { Link } from "react-router-dom";
 
+
 const Main = () => {
   return (
     <div className={style.main}>
@@ -10,13 +11,13 @@ const Main = () => {
           <h2 className={style.h2}>
             THIS IS ALL YOUR PRODUCTS IN OUR MALL ONLINE
           </h2>
-          <Link to="/products">Send ></Link>
+          <Link to="/products">Send</Link>
         </div>
         <div className={style.companies}>
           <h2 className={style.h2}>
             THIS IS ALL YOUR COMPANIES IN OUR MALL ONLINE
           </h2>
-          <Link to="/companies">Send ></Link>
+          <Link to="/companies">Send</Link>
         </div>
         <div className={style.team}>
           <h1 className={style.h1}>EQUIP CHALLENGE FRONT</h1>
@@ -28,7 +29,7 @@ const Main = () => {
           <a href="#!">+</a>
         </div>
         <div className={style.start}>
-          <a href="#!">START YOUR PROJECT -></a>
+          <a href="#!">START YOUR PROJECT &gt;</a>
         </div>
       </div>
     </div>

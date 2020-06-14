@@ -16,13 +16,14 @@ const Login = (props) => {
   //en caso de que el passwrod o usuario no exista
   useEffect(() => {
     if (authenticated) {
-      props.history.push("/home");
+      props.history.push("/companies");
     }
 
     if (mensaje) {
       showAlert(mensaje.msg, mensaje.categoria);
     }
-  }, [mensaje, authenticated, props.histroy]);
+    // eslint-disable-next-line
+  }, [mensaje, authenticated, props.history]);
 
   //state para iniciar sesion
   const [user, saveUser] = useState({

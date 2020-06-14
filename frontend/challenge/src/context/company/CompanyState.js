@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react';
 import CompanyContext from "./CompanyContext";
 import CompanyReducer from "./CompanyReducer";
+import clienteAxios from "../../config/axios"
 import {
   VIEW_USERNAME,
   GET_COMPANIES,
@@ -8,72 +9,19 @@ import {
   VALIDATE_FORM,
   GET_CURRENT_PROJECT,
   LEAVE_COMPANY,
+  COMPANY_ERROR
 } from "../../types";
-import { v4 as uuidv4 } from 'uuid';
+
 
 
 const CompanyState = props => {
-  const companies = [
-    {
-      id: 1,
-      name: "GMD Peru SAC",
-      ruc: "10987654320",
-      website: "https://evilcorp.com",
-    },
-    {
-      id: 2,
-      name: "Coursera Peru",
-      ruc: "10987654320",
-      website: "https://evilcorp.com",
-    },
-    {
-      id: 3,
-      name: "Udemy Peru",
-      ruc: "10987654320",
-      website: "https://evilcorp.com",
-    },
-    {
-      id: 4,
-      name: "Platzi Peru",
-      ruc: "10987654320",
-      website: "https://evilcorp.com",
-    },
-    {
-      id: 5,
-      name: "EDteam Peru",
-      ruc: "10987654320",
-      website: "https://evilcorp.com",
-    },
-    {
-      id: 6,
-      name: "Intranet Peru",
-      ruc: "10987654320",
-      website: "https://evilcorp.com",
-    },
-    {
-      id: 7,
-      name: "Crehana Peru",
-      ruc: "10987654320",
-      website: "https://evilcorp.com",
-    },
-    {
-      id: 8,
-      name: "JAG Peru",
-      ruc: "10987654320",
-      website: "https://evilcorp.com",
-    },
-    {
-      id: 9,
-      name: "EquipIndustry Peru",
-      ruc: "10987654320",
-      website: "https://evilcorp.com",
-    }
-  ];
   const initialState = {
     companies: [],
     viewUsername: false,
     errorForm: false,
     company: null,
+    mensaje: null,
+    alreadyCreate: false,
   };
 
   //dispatch para ejecutar las acciones
@@ -88,22 +36,45 @@ const CompanyState = props => {
   }
 
   //traer las compañias desde la BD
-  const getCompanies = () => {
-    dispatch({
-      type: GET_COMPANIES,
-      payload: companies
-    })
+  const getCompanies = async () => {
+    try {
+      const response = await clienteAxios.get('/companies/');
+      dispatch({
+        type: GET_COMPANIES,
+        payload: response.data
+      })
+    } catch (error) {
+      const alerta = {
+        msg: 'Hubo un error',
+        categoria: 'alert-danger'
+      }
+      dispatch({
+        type: COMPANY_ERROR,
+        payload: alerta
+      })
+    }
   }
 
   //AGREGAR NUEVA COMPAÑIA
-  const addCompanies = companies => {
-    companies.id = uuidv4();
-
-    //Insertamos el proyecto en el state
-    dispatch({
-      type: ADD_COMPANY,
-      payload: companies
-    })
+  const addCompanies = async companies => {
+    try {
+      const response = await clienteAxios.post("/companies/create_join/", companies);
+      console.log(response)
+      //Insertamos el proyecto en el state
+      dispatch({
+        type: ADD_COMPANY,
+        payload: response.data,
+      })
+    } catch (error) {
+      const alerta = {
+        msg: 'Hubo un error',
+        categoria: 'alert-danger'
+      }
+      dispatch({
+        type: COMPANY_ERROR,
+        payload: alerta
+      })
+    }
   }
 
   //VALIDAR FORM POR ERRORES
@@ -122,11 +93,23 @@ const CompanyState = props => {
   }
 
   //ELIMA O DEJA UN PROYECTO
-  const eliminarCompany = companyId => {
-    dispatch({
-      type: LEAVE_COMPANY,
-      payload: companyId
-    })
+  const eliminarCompany = async companyId => {
+    try {
+      await clienteAxios.post('/companies/leave')
+      dispatch({
+        type: LEAVE_COMPANY,
+        payload: companyId
+      })
+    } catch (error) {
+      const alerta = {
+        msg: 'Hubo un error',
+        categoria: 'alert-danger'
+      }
+      dispatch({
+        type: COMPANY_ERROR,
+        payload: alerta
+      })
+    }
   }
 
   return (
@@ -147,7 +130,9 @@ const CompanyState = props => {
         company: state.company,
         proyectoActual,
         //leave company
-        eliminarCompany
+        eliminarCompany,
+        mensaje: state.mensaje,
+        alreadyCreate: state.alreadyCreate
       }}
     >
       {props.children}

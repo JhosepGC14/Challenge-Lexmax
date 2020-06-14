@@ -4,13 +4,21 @@ import CardCompanies from "../CardCompanies";
 import style from "./Companies.module.css";
 import CompanyContext from "../../../../context/company/CompanyContext";
 import CreateCompany from "../CreateCompany";
+import AlertaContext from "../../../../context/alertas/alertaContext";
 
 const ListCompanies = () => {
   const chooseCompany = useContext(CompanyContext);
-  const { companies, getCompanies } = chooseCompany;
+  const { companies, getCompanies, mensaje } = chooseCompany;
+
+  //alertas
+  const alertaContext = useContext(AlertaContext);
+  const { alert, showAlert } = alertaContext;
 
   //obtener compañias cuando carga el componente
   useEffect(() => {
+    if (mensaje) {
+      showAlert(mensaje.msg, mensaje.categoria);
+    }
     getCompanies();
     //eslint-disable-next-line
   }, []);
@@ -37,6 +45,11 @@ const ListCompanies = () => {
           CREATE NEW COMPANY
         </button>
       </div>
+      {alert ? (
+        <div className={`text-center alert ${alert.categoria}`}>
+          {alert.msg}
+        </div>
+      ) : null}
       <div
         className="modal fade"
         id="createcompany"

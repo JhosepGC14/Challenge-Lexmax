@@ -5,7 +5,8 @@ const HomeRoutes = [
   {
     path: "/home",
     component: Main,
-    auth: false,
+    auth: true,
+    exact: true,
   },
 ];
 

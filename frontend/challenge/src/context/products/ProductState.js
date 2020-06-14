@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import ProductContext from "./ProductContex";
 import ProductReducer from "./ProductReducer";
-import { v4 as uuidv4 } from 'uuid';
+import clienteAxios from "../../config/axios";
 import {
   PRODUCTS_COMPANY,
   ADD_PRODUCTS,
@@ -13,97 +13,7 @@ import {
 
 const ProductState = props => {
   const initialState = {
-    products: [
-      {
-        id: 1,
-        companyId: 1,
-        name: "Agua de Mesa San Luis",
-        sku: "DP18-Bk-T1",
-        price: 100,
-        discount: 10,
-      },
-      {
-        id: 2,
-        companyId: 1,
-        name: "Coca-Cola",
-        sku: "DP18-RT-T1",
-        price: 100,
-        discount: 10,
-      },
-      {
-        id: 3,
-        companyId: 3,
-        name: "Inka Cola Zero",
-        sku: "DP18-DE-T2",
-        price: 100,
-        discount: 10,
-      },
-      {
-        id: 4,
-        companyId: 3,
-        name: "Laptop MSI GTX2800",
-        sku: "DP18-FG-T1",
-        price: 100,
-        discount: 10,
-      },
-      {
-        id: 5,
-        companyId: 5,
-        name: "Huawei Mate 20 pro",
-        sku: "DP18-Vk-T1",
-        price: 100,
-        discount: 10,
-      },
-      {
-        id: 6,
-        companyId: 6,
-        name: "iPhone 11 Pro Max",
-        sku: "DP18-Ak-T1",
-        price: 100,
-        discount: 10,
-      },
-      {
-        id: 7,
-        companyId: 7,
-        name: "Mouse Inhalambrico",
-        sku: "DP18-BC-T1",
-        price: 100,
-        discount: 10,
-      },
-      {
-        id: 8,
-        companyId: 8,
-        name: "Cable USB-C",
-        sku: "DP18-Bk-D5",
-        price: 100,
-        discount: 10,
-      },
-      {
-        id: 9,
-        companyId: 9,
-        name: "Macbook Pro 2016 Core i9",
-        sku: "DP18-Bk-GH",
-        price: 100,
-        discount: 10,
-      },
-      {
-        id: 11,
-        companyId: 1,
-        name: "Cargador Portatil",
-        sku: "DP18-Bk-FR",
-        price: 100,
-        discount: 10
-      },
-      {
-        id: 12,
-        companyId: 1,
-        name: "PlayStation 4",
-        sku: "DP18-Bk-F4",
-        price: 100,
-        discount: 10
-      }
-    ],
-    productsCompany: null,
+    productsCompany: [],
     errorProduct: false,
     productEdit: null
   }
@@ -113,20 +23,31 @@ const ProductState = props => {
   const [state, dispatch] = useReducer(ProductReducer, initialState)
 
   //obtener productos por compañias
-  const getProducts = companyId => {
-    dispatch({
-      type: PRODUCTS_COMPANY,
-      payload: companyId
-    })
+  const getProducts = async company => {
+    try {
+      const response = await clienteAxios.get('/products/', { params: { company } });
+      dispatch({
+        type: PRODUCTS_COMPANY,
+        payload: response.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   //Agregar productos
-  const addProducts = products => {
-    products.id = uuidv4();
-    dispatch({
-      type: ADD_PRODUCTS,
-      payload: products
-    })
+  const addProducts = async products => {
+
+    try {
+      await clienteAxios.post('/products/', products);
+      dispatch({
+        type: ADD_PRODUCTS,
+        payload: products
+      })
+    } catch (error) {
+      console.log(error)
+    }
+
   }
 
   //validar form de creacion de product
@@ -137,11 +58,16 @@ const ProductState = props => {
   }
 
   //ELIMINAR PRODUCTO
-  const deleteProduct = id => {
-    dispatch({
-      type: DELETE_PRODUCTS,
-      payload: id
-    })
+  const deleteProduct = async (id, company) => {
+    try {
+      await clienteAxios.delete(`/products/${id}`, { params: { company } });
+      dispatch({
+        type: DELETE_PRODUCTS,
+        payload: id
+      })
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   //EXTRAER PRODUCTO A EDITAR
@@ -153,18 +79,23 @@ const ProductState = props => {
   }
 
   //EDITA O MODIFICA EL PRODUCTO
-  const actualizarProducto = products => {
-    dispatch({
-      type: ACTUALIZAR_PRODUCTO,
-      payload: products
-    })
+  const actualizarProducto = async products => {
+    try {
+      const response = await clienteAxios.put(`/products/${products.id}`, products)
+
+      dispatch({
+        type: ACTUALIZAR_PRODUCTO,
+        payload: response.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
     <ProductContext.Provider
       value={{
         //traer productos por id de compañia
-        products: state.products,
         getProducts,
         productsCompany: state.productsCompany,
         //agregar productos por ID

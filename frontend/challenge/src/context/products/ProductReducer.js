@@ -13,12 +13,12 @@ export default (state, action) => {
     case PRODUCTS_COMPANY:
       return {
         ...state,
-        productsCompany: state.products.filter(products => products.companyId === action.payload)
+        productsCompany:action.payload
       }
     case ADD_PRODUCTS:
       return {
         ...state,
-        products: [...state.products, action.payload],
+        productsCompany: [...state.productsCompany, action.payload],
         errorProduct: false
       }
     case VALIDATE_PRODUCTS:
@@ -29,7 +29,7 @@ export default (state, action) => {
     case DELETE_PRODUCTS:
       return {
         ...state,
-        products: state.products.filter(product => product.id !== action.payload)
+        productsCompany: state.productsCompany.filter(product => product.id !== action.payload)
       }
 
     case GET_CURRENT_PRODUCTS:
@@ -40,7 +40,7 @@ export default (state, action) => {
     case ACTUALIZAR_PRODUCTO:
       return {
         ...state,
-        products: state.products.map(products => products.id === action.payload.id ? action.payload : products),
+        productsCompany: state.productsCompany.map(products => products.id === action.payload.id ? action.payload : products),
         productEdit: null
       }
     default:

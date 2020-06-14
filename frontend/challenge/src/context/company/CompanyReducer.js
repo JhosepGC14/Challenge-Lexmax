@@ -4,7 +4,8 @@ import {
   ADD_COMPANY,
   VALIDATE_FORM,
   GET_CURRENT_PROJECT,
-  LEAVE_COMPANY
+  LEAVE_COMPANY,
+  COMPANY_ERROR
 } from "../../types";
 
 export default (state, action) => {
@@ -23,7 +24,8 @@ export default (state, action) => {
       return {
         ...state,
         companies: [...state.companies, action.payload],
-        errorForm: false
+        errorForm: false,
+        alreadyCreate: true
       }
     case VALIDATE_FORM:
       return {
@@ -40,6 +42,11 @@ export default (state, action) => {
         ...state,
         companies: state.companies.filter(company => company.id !== action.payload),
         company: null
+      }
+    case COMPANY_ERROR:
+      return{
+        ...state,
+        mensaje: action.payload
       }
     default:
       return state;

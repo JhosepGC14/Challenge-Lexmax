@@ -18,6 +18,7 @@ const AuthState = props => {
     authenticated: null,
     username: null,
     mensaje: null,
+    loading: true,
   }
 
   const [state, dispatch] = useReducer(authReducer, initialState)
@@ -54,10 +55,9 @@ const AuthState = props => {
     }
     try {
       const response = await clienteAxios.get('/users/me/')
-      console.log(response);
       dispatch({
         type: GET_USER,
-        payload: response.data.name
+        payload: response.data
       });
     }
     catch (error) {
@@ -91,10 +91,19 @@ const AuthState = props => {
     }
   }
 
+  //LogOut Session
+  const logOut = () => {
+    dispatch({
+      type: LOGOUT,
+
+    })
+  }
+
 
   return (
     <authContext.Provider
       value={{
+        loading: state.loading,
         //registerUser
         sessionId: state.sessionId,
         authenticated: state.authenticated,
@@ -103,7 +112,8 @@ const AuthState = props => {
         mensaje: state.mensaje,
         registerUser,
         //login
-        loginUser
+        loginUser,
+        logOut
       }}
     >
       {props.children}

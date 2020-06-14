@@ -4,6 +4,7 @@ import AuthRoutes from "../features/auth/routes";
 import HomeRoutes from "../components/routes";
 import CompaniesRoutes from "../features/companies/routes"
 import ProductRoutes from "../features/products/routes";
+import PrivateRoutes from './PrivateRoutes';
 
 
 const routes = [...HomeRoutes, ...AuthRoutes, ...CompaniesRoutes, ...ProductRoutes];
@@ -12,7 +13,7 @@ function MainRoutes() {
   return (
     <Switch>
       {routes.map((route, index) =>
-        !route.auth ? <Route {...route} key={index} /> : "NADA"
+        !route.auth ? <Route {...route} key={index} /> : <PrivateRoutes {...route} key={index} />
       )}
       <Redirect from="/" to="home" exact></Redirect>
       <Route to="*">

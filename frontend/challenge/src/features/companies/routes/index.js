@@ -8,25 +8,25 @@ const CompaniesRoutes = [
   {
     path: "/companies",
     component: Companies,
-    auth: false,
+    auth: true,
     exact: true,
   },
   {
     path: "/choosecompany",
     component: Choosecompany,
-    auth: false,
+    auth: true,
     exact: true,
   },
   {
     path: "/createcompany",
     component: CreateCompany,
-    auth: false,
+    auth: true,
     exact: true,
   },
   {
     path: "/updatecompany",
     component: UpdateCompany,
-    auth: false,
+    auth: true,
     exact: true,
   },
 ];

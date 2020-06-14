@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import style from "./CardProduct.module.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import CompanyContext from "../../../../context/company/CompanyContext";
 import ProductContext from "../../../../context/products/ProductContex";
 
@@ -11,18 +11,14 @@ const CardProduct = ({ products }) => {
 
   // Extrar productos de state inicial
   const productsContext = useContext(ProductContext);
-  const {
-    deleteProduct,
-    getProducts,
-    editProduct,
-  } = productsContext;
+  const { deleteProduct, getProducts, editProduct } = productsContext;
 
   //aplicando destructuring en compañia
   const [proyectoActual] = company;
 
   //funcion que ejecuta cuando el user presiona boton de eliminar producto
   const productEliminar = (id) => {
-    deleteProduct(id);
+    deleteProduct(id, proyectoActual.id);
     getProducts(proyectoActual.id);
   };
 
@@ -38,9 +34,9 @@ const CardProduct = ({ products }) => {
       </div>
       <p>{products.name}</p>
       <span>${products.price}</span>
-      <Link to="/productdetail">
+      {/* <Link to="/productdetail">
         <button className="btn btn-primary mb-2">View Details</button>
-      </Link>
+      </Link> */}
       <button
         className="btn btn-primary mb-2"
         type="button"

@@ -39,7 +39,7 @@ const Products = () => {
           data-target="#leavecompany"
           className="btn btn-primary mb-5"
         >
-          Leave Company ->
+          Leave Company -&gt;
         </button>
       </div>
       <div

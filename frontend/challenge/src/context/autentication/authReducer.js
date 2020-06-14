@@ -15,20 +15,27 @@ export default (state, action) => {
       return {
         ...state,
         authenticated: true,
-        mensaje: null
+        mensaje: null,
+        loading: false
       }
     case GET_USER:
       return {
         ...state,
-        username: action.payload
+        authenticated: true,
+        username: action.payload,
+        loading: false
       }
+    case LOGOUT:
     case LOGIN_ERROR:
     case REGISTER_ERROR:
       localStorage.removeItem('sessionId')
       return {
         ...state,
         token: null,
-        mensaje: action.payload
+        username: null,
+        authenticated: null,
+        mensaje: action.payload,
+        loading: false
       }
     default:
       return state;
