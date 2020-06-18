@@ -15,12 +15,12 @@ const Companies = () => {
   }, []);
 
   return (
-    <div className={style.containerAside}>
+    <section className={style.containerAside}>
       <Sidebar />
       <div className={style.containerListProducts}>
         <Products />
       </div>
-    </div>
+    </section>
   );
 };
 

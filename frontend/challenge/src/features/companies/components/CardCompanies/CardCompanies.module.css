@@ -24,8 +24,8 @@
 
 .cardcompany:hover {
   box-shadow: 10px 10px 10px lightgrey;
-  transition: 1s all;
-  transform: scale(1.1);
+  transition: 0.5s all;
+  transform: scale(1.05);
 }
 
 .absolute {
@@ -42,4 +42,10 @@
 
 .h5 {
   color: #2699fb;
+}
+
+@media (max-width: 660px) {
+  .grid {
+    padding: 0px;
+  }
 }

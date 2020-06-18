@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import style from "./Register.module.css";
-import image from "../../../assets/images/image1.png";
 import { Link } from "react-router-dom";
 import AlertaContext from "../../../context/alertas/alertaContext";
 import AuthContext from "../../../context/autentication/authContext";
@@ -91,16 +90,12 @@ const Register = (props) => {
         </div>
       ) : null}
       <div className={style.row}>
-        <div className="col">
-          <figure>
-            <img className={style.img} src={image} alt="image_login" />
-          </figure>
-        </div>
         <form className={`col ${style.formContainer}`} onSubmit={onSubmit}>
-          <label>Access to Plataform</label>
-          <h1>Register</h1>
+          <label className="text-center">Access to Plataform</label>
+          <h1 className="text-center">Register</h1>
           <div className="form-group">
             <label htmlFor="name">Name Complete:</label>
+            <div></div>
             <input
               className="form-control"
               id="name"
@@ -148,7 +143,9 @@ const Register = (props) => {
           >
             Registrar
           </button>
-          <Link to="/login">Iniciar Sesion</Link>
+          <Link className="text-center" to="/login">
+            Iniciar Sesion
+          </Link>
         </form>
       </div>
     </div>

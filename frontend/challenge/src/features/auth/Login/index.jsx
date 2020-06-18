@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import style from "./Login.module.css";
-import image from "../../../assets/images/image1.png";
 import { Link } from "react-router-dom";
 import AlertaContext from "../../../context/alertas/alertaContext";
 import AuthContext from "../../../context/autentication/authContext";
@@ -67,14 +66,9 @@ const Login = (props) => {
         </div>
       ) : null}
       <div className={style.row}>
-        <div className="col">
-          <figure>
-            <img className={style.img} src={image} alt="image_login" />
-          </figure>
-        </div>
         <form onSubmit={onSubmit} className={`col ${style.formContainer}`}>
-          <label>Access to Plataform</label>
-          <h1>LOGIN</h1>
+          <label className="text-center">Access to Plataform</label>
+          <h1 className="text-center">LOGIN</h1>
           <div className="form-group">
             <label htmlFor="email">Email Adress</label>
             <input
@@ -100,7 +94,9 @@ const Login = (props) => {
           <button type="submit" className="btn btn-primary mb-3">
             Ingresar
           </button>
-          <Link to="/register">Obtener Cuenta</Link>
+          <Link to="/register" className="text-center">
+            Obtener Cuenta
+          </Link>
         </form>
       </div>
     </div>

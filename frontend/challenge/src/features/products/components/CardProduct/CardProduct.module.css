@@ -15,8 +15,8 @@
 
 .cardProduct:hover {
   box-shadow: 10px 10px 10px lightgrey;
-  transition: 1s all;
-  transform: scale(1.1);
+  transition: 0.5s all;
+  transform: scale(1.05);
 }
 
 .cardProduct p,

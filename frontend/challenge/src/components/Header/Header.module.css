@@ -1,36 +1,34 @@
 .header {
-  background: #f1f9ff;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  padding: 0px 30px;
   height: 60px;
-  color: #2699fb;
 }
 
 .container {
-  width: 60%;
+  width: 100%;
 }
 
 .menu {
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
   margin: 0px;
   padding: 0px;
   list-style: none;
+  color: white;
 }
 
 .menu li a {
-  color: #2699fb;
+  color: white;
   list-style: none !important;
 }
 
 .btn_blank {
   background: none;
   border: none;
-  color: #2699fb;
+  color: white;
+}
+
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
 }

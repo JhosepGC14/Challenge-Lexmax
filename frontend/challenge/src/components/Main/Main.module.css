@@ -1,6 +1,5 @@
 .main {
-  height: 100%;
-  width: 100%;
+  width: auto;
   margin: auto;
   padding: 8rem 0px;
   background: #f1f9ff;
@@ -66,4 +65,30 @@
 .h2 {
   font-size: 16px;
   color: #2699fb;
+}
+
+@media (max-width: 768px) {
+  .gridhome {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  .products {
+    grid-column: 1/4;
+    grid-row: 1;
+  }
+
+  .companies {
+    grid-column: 1 / 4;
+    grid-row: 2;
+  }
+
+  .team {
+    grid-column: 1 / 4;
+    grid-row: 3;
+  }
+  .start {
+    grid-column: 1/4;
+    grid-row: 4;
+  }
 }

@@ -4,3 +4,9 @@
   margin: auto;
   background: #f1f9ff;
 }
+
+@media (max-width: 660px) {
+  .layout {
+    width: 90%;
+  }
+}

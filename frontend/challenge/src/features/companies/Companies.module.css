@@ -2,8 +2,21 @@
   display: flex;
   flex-direction: row;
   width: 100%;
+  height: auto;
+  margin-bottom: 50px;
 }
 
-.containerListProducts{
+.containerListProducts {
   width: 50%;
+}
+
+@media (max-width: 768px) {
+  .containerAside {
+    flex-direction: column;
+    margin-bottom: 50px;
+  }
+  .containerListProducts {
+    width: 100%;
+    margin-bottom: 30px;
+  }
 }

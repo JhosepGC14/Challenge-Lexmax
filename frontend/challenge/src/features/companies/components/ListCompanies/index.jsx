@@ -59,7 +59,7 @@ const ListCompanies = () => {
         aria-hidden="true"
       >
         <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content p-5">
+          <div className={`${style.modalcontainer} modal-content p-5`}>
             <CreateCompany />
           </div>
         </div>

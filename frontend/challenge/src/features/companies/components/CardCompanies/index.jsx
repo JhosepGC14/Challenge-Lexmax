@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import style from "./CardCompanies.module.css";
-import { Link } from "react-router-dom";
 import CompanyContext from "../../../../context/company/CompanyContext";
 import ProductContext from "../../../../context/products/ProductContex";
 
@@ -21,22 +20,26 @@ const CardCompanies = ({ companies }) => {
 
   return (
     <div className={style.grid}>
-      <div className={style.cardcompany}>
+      <div className={`${style.cardcompany} card`}>
         <h2>
-          <a onClick={() => seleccionarCompany(companies.id)} href="#!">
+          <a
+            className="card-title"
+            onClick={() => seleccionarCompany(companies.id)}
+            href="#!"
+          >
             {companies.name}
           </a>
         </h2>
-        <p>{companies.ruc}</p>
-        <p>{companies.website}</p>
-        <p>
+        <p className="card-subtitle mt-2 mb-2 text-muted">{companies.ruc}</p>
+        <p className="card-link">{companies.website}</p>
+        <p className="card-text">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
           ipsum et vero harum expedita animi praesentium voluptatem accusamus,
           cumque cupiditate.
         </p>
-        <Link className={style.absolute} to="/updatecompany">
+        {/* <Link className={style.absolute} to="/updatecompany">
           Edit Company+
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

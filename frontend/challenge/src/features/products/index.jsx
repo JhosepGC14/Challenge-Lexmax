@@ -30,14 +30,14 @@ const Products = () => {
   };
 
   return (
-    <div className={style.container}>
+    <div className={`${style.container} card`}>
       <h3>All Products of {proyectoActual.name}</h3>
       <div className={style.leave}>
         <button
           type="button"
           data-toggle="modal"
           data-target="#leavecompany"
-          className="btn btn-primary mb-5"
+          className="btn btn-primary mb-4"
         >
           Leave Company -&gt;
         </button>

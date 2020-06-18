@@ -28,12 +28,12 @@ const CardProduct = ({ products }) => {
   };
 
   return (
-    <div className={style.cardProduct}>
+    <div className={`${style.cardProduct} card`}>
       <div className={style.desc}>
         <span>{products.discount}%</span>
       </div>
-      <p>{products.name}</p>
-      <span>${products.price}</span>
+      <p className="card-title">{products.name}</p>
+      <span className="card-subtitle mb-2 text-muted">S/.{products.price}</span>
       {/* <Link to="/productdetail">
         <button className="btn btn-primary mb-2">View Details</button>
       </Link> */}
