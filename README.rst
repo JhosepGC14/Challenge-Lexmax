@@ -1,36 +1,31 @@
-Challenge
-=========
+# CHALLENGE - REACT.JS
 
-Hello 👋
+## Created by Jhosep GC.
 
-Notes
------
+### Installation
 
--  Clonar el repositorio.
--  Ingresar a la carpeta Frontend
--  Luego Ingresar a la carpeta Challenge
+This one requires [Node.js](https://nodejs.org/) v4+ to run.
 
+Install the dependencies and devDependencies and start the server.
+Runs the app in the development mode.
+```sh
+$ cd Challenge-React-Js
+$ cd fronted
+```
+On the first terminal eject:
+```sh
+$ yarn backend:setup
+$ yarn backend:start
+```
+Open http://localhost:3000 to view the API in the browser.
 
-Frontend Challenge - EquipIndustry
-==================================
-
-Configuration to run the environment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. code:: shell
-
-    git clone https://github.com/JhosepGC14/Challenge-Lexmax.git
-    cd frontend/
-    cd challenge/
-
-
-.. code:: shell
-
-    npm install
-    npm run start
-
-
-If everything is correct, access the following URL:
-http://localhost:3001/.
-
-
+After:
+On the second one eject:
+```sh
+$ cd challenge
+```
+```sh
+$ npm install
+$ npm start
+```
+Open http://localhost:4000 to view it in the browser.
